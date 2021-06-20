@@ -1,0 +1,71 @@
+{
+  "name": "goit-react-hw-09-phonebook",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@reduxjs/toolkit": "^1.5.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.7.1",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "formik": "^2.2.6",
+    "gh-pages": "^3.1.0",
+    "modern-normalize": "^1.0.0",
+    "node-sass": "^5.0.0",
+    "query-string": "^7.0.0",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
+    "react-jss": "^10.6.0",
+    "react-loader": "^2.4.7",
+    "react-loader-spinner": "^4.0.0",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.2",
+    "react-toastify": "^7.0.3",
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "reselect": "^4.0.0",
+    "shortid": "^2.2.16",
+    "sweetalert": "^2.1.2",
+    "uuid": "^8.3.2",
+    "web-vitals": "^1.1.0"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "netlify deploy -p",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "testall": "react-scripts test --coverage --watchAll",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "prop-types": "^15.7.2",
+    "redux-devtools-extension": "^2.13.9"
+  }
+}

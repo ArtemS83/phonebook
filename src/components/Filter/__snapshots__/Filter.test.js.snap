@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filter should render 1`] = `
+<div>
+  <p
+    class="title"
+    data-testid="filtertextTest"
+  >
+    TEXT render
+  </p>
+  <input
+    class="input"
+    data-testid="filterInputTest"
+    name="filter"
+    placeholder="Enter name contact"
+    type="text"
+    value=""
+  />
+</div>
+`;

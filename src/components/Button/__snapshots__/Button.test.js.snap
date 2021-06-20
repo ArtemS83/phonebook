@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Button should render properly type, title, onClick 1`] = `
+<div>
+  <button
+    class="button"
+    data-testid="onClickFn"
+    type="submit"
+  >
+    Hello
+  </button>
+</div>
+`;
+
+exports[`Button Button should render properly without props 1`] = `
+<div>
+  <button
+    class="buttonButton"
+    data-testid="onClickFn"
+    type="button"
+  >
+    Click me
+  </button>
+</div>
+`;
