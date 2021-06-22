@@ -6,21 +6,18 @@ import authSelectors from '../../redux/auth/auth-selectors';
 import authOperations from '../../redux/auth/auth-operations';
 
 const UserMenu = () => {
-  const name = useSelector(authSelectors.getUsername);
-
+  const name = useSelector(authSelectors.getUserName); // getUserAvatar
+  const avatar = useSelector(authSelectors.getUserAvatar);
   const dispatch = useDispatch();
 
   const hendelLogOut = useCallback(() => {
     dispatch(authOperations.logOut());
   }, [dispatch]);
 
-  // const hendelLogOut = () => {
-  //   dispatch(authOperations.logOut());
-  // };
-
   return (
     <div className={style.userMenu}>
-      <p>Welcome, {name}</p>
+      <img src={avatar} alt={name} width="40" height="40" />
+      <p>{name}</p>
       <Button title="Logout" type="button" onClick={hendelLogOut} />
     </div>
   );

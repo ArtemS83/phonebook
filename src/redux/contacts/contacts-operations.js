@@ -18,19 +18,21 @@ export const fetchContacts = () => dispatch => {
   dispatch(fetchContactsRequest());
   axios
     .get('/contacts')
-    .then(({ data }) => dispatch(fetchContactsSuccess(data)))
+    .then(({ data }) => dispatch(fetchContactsSuccess(data.data.contacts)))
     .catch(error => dispatch(fetchContactsError(error.message)));
 };
 
-export const addContact = (name, number) => dispatch => {
+export const addContact = (name, phone) => dispatch => {
   const contact = {
     name,
-    number,
+    phone,
   };
   dispatch(addContactRequest());
   axios
     .post('/contacts', contact)
-    .then(({ data }) => dispatch(addContactSuccess(data)))
+    .then(({ data }) => {
+      dispatch(addContactSuccess(data.data.contact));
+    })
     .catch(error => dispatch(addContactError(error.message)));
 };
 
@@ -42,16 +44,16 @@ export const deleteContact = id => dispatch => {
     .catch(error => dispatch(deleteContactError(error.message)));
 };
 
-export const updateContact = (id, name, number) => dispatch => {
+export const updateContact = (id, name, phone) => dispatch => {
   const contact = {
     name,
-    number,
+    phone,
   };
   dispatch(updateContactRequest());
   axios
-    .patch(`/contacts/${id}`, contact)
+    .put(`/contacts/${id}`, contact)
     .then(({ data }) => {
-      dispatch(updateContactSuccess(data));
+      dispatch(updateContactSuccess(data.data.contact));
     })
     .catch(error => dispatch(updateContactError(error.message)));
 };

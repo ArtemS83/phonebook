@@ -1,7 +1,9 @@
 import axios from 'axios';
 import authActions from './auth-actions';
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+// axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+// axios.defaults.baseURL = 'https://phonebook-my-api.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:3000/api';
 
 const token = {
   set(token) {
@@ -23,10 +25,16 @@ const register = credentials => dispatch => {
   axios
     .post('/users/signup', credentials)
     .then(({ data }) => {
-      token.set(data.token);
-      dispatch(authActions.registerSuccess(data));
+      const user = data.data;
+      dispatch(authActions.registerSuccess(user));
     })
-    .catch(error => dispatch(authActions.registerError(error.message)));
+
+    .catch(error => {
+      if (error.message.includes(409)) {
+        dispatch(authActions.notVarifyUser());
+      }
+      dispatch(authActions.registerError(error.message));
+    });
 };
 
 /*
@@ -41,10 +49,18 @@ const logIn = credentials => dispatch => {
   axios
     .post('/users/login', credentials)
     .then(({ data }) => {
-      token.set(data.token);
-      dispatch(authActions.loginSuccess(data));
+      // const user = data.data.user;
+      const userToken = data.data.token;
+      token.set(userToken);
+      // token.set(data.token);
+      dispatch(authActions.loginSuccess(data.data));
     })
-    .catch(error => dispatch(authActions.loginError(error.message)));
+    .catch(error => {
+      // if (error.message.includes(401)) {
+      //   dispatch(authActions.notVarifyUser());
+      // }
+      dispatch(authActions.loginError(error.message));
+    });
 };
 
 /*
@@ -87,7 +103,7 @@ const getCurrentUser = () => (dispatch, getState) => {
   axios
     .get('/users/current')
     .then(({ data }) => {
-      dispatch(authActions.getCurrentUserSuccess(data));
+      dispatch(authActions.getCurrentUserSuccess(data.data));
     })
     .catch(error => dispatch(authActions.getCurrentUserError(error.message)));
 };

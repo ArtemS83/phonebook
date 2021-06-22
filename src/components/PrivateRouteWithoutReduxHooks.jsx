@@ -11,7 +11,8 @@ const PrivateRouteWithoutReduxHooks = ({
   ...routeProps
 }) => {
   const IsAuthenticated = useSelector(authSelectors.getIsAuthenticated);
-
+  // const IsVerify = false;
+  //  const IsVerify = true;
   return (
     <Route {...routeProps}>
       {IsAuthenticated ? children : <Redirect to={redirectTo} />}

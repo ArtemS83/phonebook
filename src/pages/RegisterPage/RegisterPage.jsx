@@ -18,12 +18,10 @@ const RegisterPage = () => {
 
   const isLoading = useSelector(authSelectors.getLoadingUser);
   const error = useSelector(authSelectors.getErrorRegister);
+  const register = useSelector(authSelectors.getIsRegister);
+
   const inputRef = useRef();
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   inputRef.current.focus();
-  // }, []);
 
   useEffect(() => {
     dispatch(authActions.loginErrorMessageCancel());
@@ -62,6 +60,7 @@ const RegisterPage = () => {
     };
 
     dispatch(authOperations.register(newUser));
+    // TODO
     // setNameUser('');
     // setEmail('');
     // setPassword('');
@@ -84,8 +83,9 @@ const RegisterPage = () => {
             />
           </div>
         )}
-
-        {error && <Notification message={error} />}
+        {/* {error && <Notification message="Please, login or verify email!" />} */}
+        {/* {error && <Notification message={error} />} */}
+        {register && <Notification message="Please, login or verify email!" />}
 
         <form onSubmit={handleSubmit} className={style.form} autoComplete="off">
           <label className={style.label}>

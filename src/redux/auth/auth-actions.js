@@ -21,6 +21,8 @@ const getCurrentUserRequest = createAction('auth/getCurrentUserRequest');
 const getCurrentUserSuccess = createAction('auth/getCurrentUserSuccess');
 const getCurrentUserError = createAction('auth/getCurrentUserError');
 
+const notVarifyUser = createAction('auth/notVarifyUser');
+
 /* eslint-disable */
 export default {
   registerRequest,
@@ -37,4 +39,5 @@ export default {
   getCurrentUserError,
   loginErrorMessageCancel,
   registerErrorMessageCancel,
+  notVarifyUser,
 };

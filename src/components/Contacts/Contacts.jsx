@@ -8,8 +8,8 @@ const Contacts = () => {
 
   return (
     <ul className={style.list}>
-      {visibleContacts.map(({ id, name, number }) => (
-        <ContactItem key={id} id={id} name={name} number={number} />
+      {visibleContacts.map(({ id, name, phone }) => (
+        <ContactItem key={id} id={id} name={name} number={phone} />
       ))}
     </ul>
   );

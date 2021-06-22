@@ -12,7 +12,7 @@ const user = createReducer(initialUserState, {
 });
 
 const token = createReducer(null, {
-  [authActions.registerSuccess]: (_, action) => action.payload.token,
+  // [authActions.registerSuccess]: (_, action) => action.payload.token,
   [authActions.loginSuccess]: (_, action) => action.payload.token,
   [authActions.logoutSuccess]: () => null,
 });
@@ -44,7 +44,7 @@ const errorRegister = createReducer(null, {
 });
 
 const isAuthenticated = createReducer(false, {
-  [authActions.registerSuccess]: () => true,
+  // [authActions.registerSuccess]: () => true,
   [authActions.loginSuccess]: () => true,
   [authActions.getCurrentUserSuccess]: () => true,
   [authActions.registerError]: () => false,
@@ -53,9 +53,15 @@ const isAuthenticated = createReducer(false, {
   [authActions.logoutSuccess]: () => false,
 });
 
+const isRegister = createReducer(false, {
+  [authActions.registerSuccess]: () => true,
+  [authActions.notVarifyUser]: () => true,
+  [authActions.loginSuccess]: () => false,
+});
+
 const isLoading = createReducer(false, {
   [authActions.registerRequest]: () => true,
-  [authActions.registerSucces]: () => false,
+  [authActions.registerSuccess]: () => false,
   [authActions.registerError]: () => false,
 
   [authActions.loginRequest]: () => true,
@@ -79,4 +85,5 @@ export default combineReducers({
   isLoading,
   errorLogin,
   errorRegister,
+  isRegister,
 });

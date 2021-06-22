@@ -17,6 +17,7 @@ const LoginPage = () => {
 
   const isLoading = useSelector(authSelectors.getLoadingUser);
   const error = useSelector(authSelectors.getErrorLogin);
+  const register = useSelector(authSelectors.getIsRegister);
 
   const inputRef = useRef();
   const dispatch = useDispatch();
@@ -64,7 +65,11 @@ const LoginPage = () => {
             />
           </div>
         )}
-        {error && <Notification message={error} />}
+        {error && <Notification message="Please, sing up or verify email!" />}
+        {/* {error && <Notification message={error} />} */}
+        {/* {register && (
+          <Notification message="Please, sing up or verify email!" />
+        )} */}
         <form onSubmit={handleSubmit} className={style.form} autoComplete="off">
           <label className={style.label}>
             Email
