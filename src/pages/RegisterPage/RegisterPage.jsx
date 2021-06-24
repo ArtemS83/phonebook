@@ -8,6 +8,7 @@ import style from './RegisterPage.module.scss';
 import authOperations from '../../redux/auth/auth-operations';
 import authSelectors from '../../redux/auth/auth-selectors';
 //
+import axios from 'axios';
 import authActions from '../../redux/auth/auth-actions';
 
 const RegisterPage = () => {
@@ -66,6 +67,10 @@ const RegisterPage = () => {
     // setPassword('');
     // setAgreed(false);
   };
+  const handelRepeatSendEmailVerify = e => {
+    e.preventDefault();
+    axios.post('/users/verify', { email });
+  };
 
   return (
     <>
@@ -83,9 +88,15 @@ const RegisterPage = () => {
             />
           </div>
         )}
-        {/* {error && <Notification message="Please, login or verify email!" />} */}
         {/* {error && <Notification message={error} />} */}
-        {register && <Notification message="Please, login or verify email!" />}
+        {(register || error) && (
+          <>
+            <Notification message="Please, login or verify email!" />
+            <p className={style.repeat} onClick={handelRepeatSendEmailVerify}>
+              Enter email and repeat send verify email!
+            </p>
+          </>
+        )}
 
         <form onSubmit={handleSubmit} className={style.form} autoComplete="off">
           <label className={style.label}>

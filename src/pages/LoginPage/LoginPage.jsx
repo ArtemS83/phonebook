@@ -7,11 +7,10 @@ import Loader from 'react-loader-spinner';
 import style from './LoginPage.module.scss';
 import authOperations from '../../redux/auth/auth-operations';
 import authSelectors from '../../redux/auth/auth-selectors';
-//
+import axios from 'axios';
 import authActions from '../../redux/auth/auth-actions';
 
 const LoginPage = () => {
-  //{name:'Artem',email:'aqu@ukr.net', passworld : '1111111'}
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -48,6 +47,10 @@ const LoginPage = () => {
     // setEmail('');
     // setPassword('');
   };
+  const handelRepeatSendEmailVerify = e => {
+    e.preventDefault();
+    axios.post('/users/verify', { email });
+  };
 
   return (
     <>
@@ -65,11 +68,16 @@ const LoginPage = () => {
             />
           </div>
         )}
-        {error && <Notification message="Please, sing up or verify email!" />}
         {/* {error && <Notification message={error} />} */}
-        {/* {register && (
-          <Notification message="Please, sing up or verify email!" />
-        )} */}
+        {(register || error) && (
+          <>
+            <Notification message="Please, sing up or verify email!" />
+
+            <p className={style.repeat} onClick={handelRepeatSendEmailVerify}>
+              Enter email and repeat send verify email!
+            </p>
+          </>
+        )}
         <form onSubmit={handleSubmit} className={style.form} autoComplete="off">
           <label className={style.label}>
             Email

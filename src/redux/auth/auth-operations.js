@@ -109,4 +109,9 @@ const getCurrentUser = () => (dispatch, getState) => {
 };
 
 /*eslint-disable*/
-export default { register, logOut, logIn, getCurrentUser };
+export default {
+  register,
+  logOut,
+  logIn,
+  getCurrentUser,
+};
