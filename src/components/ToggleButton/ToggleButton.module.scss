@@ -1,0 +1,49 @@
+.ThemeButton {
+  display: flex;
+
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: auto;
+
+  border: 1px solid rgb(125, 19, 196);
+  border-radius: 6px;
+  background-image: linear-gradient(
+    120deg,
+    rgba(246, 248, 248, 0.8) 0%,
+    rgba(74, 75, 77, 0.8) 100%
+  );
+
+  box-shadow: 2px 6px 8px -2px #a09c9c;
+
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  &:hover,
+  &:focus {
+    background-color: #78beec; //78beec //rgb(206, 110, 211)
+    transform: scale(1.03);
+  }
+
+  img {
+    max-width: 24px;
+    height: auto;
+    transition: all 300ms ease-in-out;
+
+    &.lightTheme:first-child {
+      transform: translateY(0);
+    }
+
+    &.darkTheme:first-child {
+      transform: translateY(100px);
+    }
+
+    &.lightTheme:nth-child(2) {
+      transform: translateY(-100px);
+    }
+
+    &.darkTheme:nth-child(2) {
+      transform: translateY(0);
+    }
+  }
+}

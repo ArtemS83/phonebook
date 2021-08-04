@@ -1,0 +1,22 @@
+.lightTheme {
+  background: linear-gradient(-45deg, #2980b9, #6dd5fa, #ffffff);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+.darkTheme {
+  background-color: #272681;
+  color: #e7f7f3;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

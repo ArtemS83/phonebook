@@ -1,14 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { lazy, Suspense } from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 import Container from 'components/Container';
 import AppBar from 'components/AppBar';
+import ToggleButton from 'components/ToggleButton';
+
 import Loader1 from 'components/Loader1';
 // import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
 import PrivateRouteWithoutReduxHooks from 'components/PrivateRouteWithoutReduxHooks';
 import authOperations from 'redux/auth/auth-operations';
+import style from './App.module.scss';
 
 const HomePage = lazy(() =>
   import('pages/HomePage' /* webpackChunkName: "home-page" */),
@@ -27,14 +30,39 @@ const LoginPage = lazy(() =>
 );
 
 const App = () => {
+  const [theme, setTheme] = useState('light');
+
+  const isLight = theme === 'light' ? style.lightTheme : style.darkTheme;
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+      window.localStorage.setItem('theme', 'dark');
+    } else {
+      setTheme('light');
+      window.localStorage.setItem('theme', 'light');
+    }
+  };
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+
+    if (localTheme) {
+      setTheme(localTheme);
+    } else {
+      window.localStorage.setItem('theme', 'light');
+    }
+  }, []);
+
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(authOperations.getCurrentUser()), [dispatch]);
 
   return (
-    <>
+    <div className={isLight}>
       <AppBar />
       <Container>
+        <ToggleButton theme={theme} toggleTheme={toggleTheme} />
         <Suspense
           fallback={
             // <div>Loading...</div>
@@ -69,7 +97,7 @@ const App = () => {
           </Switch>
         </Suspense>
       </Container>
-    </>
+    </div>
   );
 };
 
